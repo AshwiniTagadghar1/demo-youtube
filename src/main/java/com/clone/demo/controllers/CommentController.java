@@ -29,9 +29,9 @@ public class CommentController {
 
     // GET /api/comments/{id} - Get a comment by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Comment> getCommentById(@PathVariable String id) {
+    public ResponseEntity<Comment> getUserById(@PathVariable String id) {
         Optional<Comment> comment = commentService.getCommentById(id);
-        return comment != null ? (ResponseEntity<Comment>) ResponseEntity.ok() : ResponseEntity.notFound().build();
+        return comment.isPresent() ? ResponseEntity.ok(comment.get()) : ResponseEntity.notFound().build();
     }
 
     // GET /api/comments - Get all comments

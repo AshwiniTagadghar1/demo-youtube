@@ -31,8 +31,9 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {
         Optional<User> user = userService.getUserById(id);
-        return user != null ? (ResponseEntity<User>) ResponseEntity.ok() : ResponseEntity.notFound().build();
+        return user.isPresent() ? ResponseEntity.ok(user.get()) : ResponseEntity.notFound().build();
     }
+    
 
     // GET /api/users - Get all users
     @GetMapping

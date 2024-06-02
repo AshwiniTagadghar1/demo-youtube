@@ -31,8 +31,9 @@ public class VideoController {
     @GetMapping("/{id}")
     public ResponseEntity<Video> getVideoById(@PathVariable String id) {
         Optional<Video> video = videoService.getVideoById(id);
-        return video != null ? (ResponseEntity<Video>) ResponseEntity.ok() : ResponseEntity.notFound().build();
+        return video.isPresent() ? ResponseEntity.ok(video.get()) : ResponseEntity.notFound().build();
     }
+    
 
     // GET /api/videos - Get all videos
     @GetMapping

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.concurrent.atomic.AtomicInteger;
+//import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 @NoArgsConstructor
@@ -19,14 +19,17 @@ public class Comment {
     private String id;
     private String text;
     private String author;
-    private AtomicInteger likeCount = new AtomicInteger(0);
-    private AtomicInteger disLikeCount = new AtomicInteger(0);
 
-    public int likeCount() {
-        return likeCount.get();
-    }
+    // Use AtomicInteger for concurrent access
+    //private final AtomicInteger likeCount = new AtomicInteger(0);
+    //private final AtomicInteger disLikeCount = new AtomicInteger(0);
 
-    public int disLikeCount() {
-        return disLikeCount.get();
-    }
+    // Getter methods are unnecessary with @Data annotation
+    // public int likeCount() {
+    //     return likeCount.get();
+    // }
+
+    // public int disLikeCount() {
+    //     return disLikeCount.get();
+    // }
 }
